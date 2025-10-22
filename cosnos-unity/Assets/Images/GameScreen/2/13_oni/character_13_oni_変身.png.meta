@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_13_oni_\u5909\u8EAB_0": 3104007583962751062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

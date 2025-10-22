@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_03_kagaribi_\u901A\u5E38_0": -66812878373915788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

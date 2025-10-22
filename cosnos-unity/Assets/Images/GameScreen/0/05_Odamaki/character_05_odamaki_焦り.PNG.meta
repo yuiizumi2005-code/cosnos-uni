@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_05_odamaki_\u7126\u308A_0": -1204888895776027609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

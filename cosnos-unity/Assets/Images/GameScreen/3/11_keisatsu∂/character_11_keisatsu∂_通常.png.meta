@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_11_keisatsu\u2202_\u901A\u5E38_0": 4464163233539215244
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

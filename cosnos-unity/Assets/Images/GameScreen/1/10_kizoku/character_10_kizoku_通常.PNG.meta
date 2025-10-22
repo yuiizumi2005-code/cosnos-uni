@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_10_kizoku_\u901A\u5E38_0": 8879461783039321989
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

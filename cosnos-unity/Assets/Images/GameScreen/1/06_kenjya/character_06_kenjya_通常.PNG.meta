@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_06_kenjya_\u901A\u5E38_0": -9211873031208583633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

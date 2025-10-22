@@ -198,7 +198,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_04_miyabi_\u901A\u5E38_0": -1824491557334281490
+      "character_04_miyabi_\u901A\u5E38_1": 1865337112938956328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

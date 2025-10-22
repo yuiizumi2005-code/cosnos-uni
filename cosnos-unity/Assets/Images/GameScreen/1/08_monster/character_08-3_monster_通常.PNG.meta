@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_08-3_monster_\u901A\u5E38_0": 3431730725936271391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_02_tsubaki_\u901A\u5E38_0": -3535409292520923332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

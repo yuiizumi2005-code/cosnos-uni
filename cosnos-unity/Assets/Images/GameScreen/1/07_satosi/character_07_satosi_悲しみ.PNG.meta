@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "character_07_satosi_\u60B2\u3057\u307F_0": 8233410880342025403
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
