@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using System.IO;
 
+
 public class NovelGameManager : MonoBehaviour
 {
-    public Text nameText;         // 名前表示用Text
-    public Text dialogueText;     // セリフ表示用Text
+    public TMP_Text nameText;         // 名前表示用Text
+    public TMP_Text dialogueText;     // セリフ表示用Text
     public Image bgImage;         // 背景用Image（任意）
     public Image[] characterSlots; // 左右のキャラ表示場所（左→右）
 
@@ -15,8 +17,14 @@ public class NovelGameManager : MonoBehaviour
 
     void Start()
     {
-        LoadScenario("scenario"); // Resources/scenario.csv を読み込む
-        DisplayLine();
+        foreach (Image slot in characterSlots)
+    {
+        slot.sprite = null;
+        slot.color = Color.clear;
+    }
+
+    LoadScenario("scenario");
+    DisplayLine();
     }
 
     void Update()
@@ -73,19 +81,34 @@ public class NovelGameManager : MonoBehaviour
         DisplayLine();
     }
 
-    void ShowCharacter(string target, string spriteName)
+    void ShowCharacter(string slot, string spriteName)
+{
+    Sprite newSprite = Resources.Load<Sprite>($"Characters/{spriteName}");
+    Debug.Log($"Loading sprite: Characters/{spriteName} => {(newSprite == null ? "失敗" : "成功")}");
+
+    if (newSprite == null)
     {
-        // キャラ画像を読み込んで表示
-        Sprite s = Resources.Load<Sprite>("Characters/" + spriteName);
-        foreach (Image slot in characterSlots)
-        {
-            if (slot.name == target)
-            {
-                slot.sprite = s;
-                slot.color = Color.white;
-            }
-        }
+        Debug.LogError($"スプライトが見つかりません: Characters/{spriteName}");
+        return;
     }
+
+    Image target = null;
+    switch (slot)
+    {
+        case "character-left-1": target = characterSlots[0]; break;
+        case "character-left-2": target = characterSlots[1]; break;
+        case "character-right-1": target = characterSlots[2]; break;
+        case "character-right-2": target = characterSlots[3]; break;
+    }
+
+    if (target != null)
+    {
+        target.sprite = newSprite;
+        target.color = Color.white;
+    }
+}
+
+
 
     void HideCharacter(string target)
     {
