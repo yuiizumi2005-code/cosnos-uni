@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: dae70b41e803eda42a5f34a4c9a03ac2
+guid: 1d9c24e2706304bb3abb7810501f45a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2281324789856415767
-    second: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_0"
-  - first:
-      213: -7480978734835516506
-    second: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_1"
-  - first:
-      213: -247754856964523624
-    second: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_2"
-  - first:
-      213: 9222497616814359659
-    second: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_3"
+      213: 8694739433752090038
+    second: scroll2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,19 +110,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -148,35 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_0"
+      name: scroll2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 268
-        width: 354
-        height: 441
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7103fa43fc4e8af10800000000000000
-      internalID: 2281324789856415767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_1"
-      rect:
-        serializedVersion: 2
-        x: 285
+        x: 11
         y: 0
-        width: 350
-        height: 474
+        width: 35
+        height: 138
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,52 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6abb0e10a793e2890800000000000000
-      internalID: -7480978734835516506
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_2"
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 274
-        width: 324
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 899704f254ccf8cf0800000000000000
-      internalID: -247754856964523624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_3"
-      rect:
-        serializedVersion: 2
-        x: 987
-        y: 2
-        width: 295
-        height: 561
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b644b1838b4ecff70800000000000000
-      internalID: 9222497616814359659
+      spriteID: 6b5df53c27be9a870800000000000000
+      internalID: 8694739433752090038
       vertices: []
       indices: 
       edges: []
@@ -248,11 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_0": 2281324789856415767
-      "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_1": -7480978734835516506
-      "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_2": -247754856964523624
-      "\u30D5\u309A\u30EB\u30BF\u3099\u30A6\u30F3_\u82B1\u74F6\uFF15_3": 9222497616814359659
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
