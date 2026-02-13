@@ -901,6 +901,10 @@ PrefabInstance:
       propertyPath: 'characterSlots.Array.data[3]'
       value: 
       objectReference: {fileID: 1191509890}
+    - target: {fileID: 5592882110936662585, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b5efd625acc7d947b9a610ca9af56f3, type: 3}
     - target: {fileID: 6373439727502439179, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 70
@@ -1013,6 +1017,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -130
       objectReference: {fileID: 0}
+    - target: {fileID: 7234527438908280916, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234527438908280916, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1087
+      objectReference: {fileID: 0}
     - target: {fileID: 7741059912047807134, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 70
@@ -1035,6 +1047,8 @@ PrefabInstance:
     - {fileID: 8567844635785842234, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
     - {fileID: 7742799574404563126, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
     - {fileID: 5746596548668869005, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
+    - {fileID: 5894312335454478152, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
+    - {fileID: 1396131517272812490, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3675230791793698955, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       insertIndex: -1
