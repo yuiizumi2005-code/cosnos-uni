@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -10,6 +11,9 @@ public class NovelGameManager : MonoBehaviour
     public TMP_Text dialogueText;     // セリフ表示
     public Image bgImage;             // 背景
     public Image[] characterSlots;    // 立ち絵スロット（配列で左→右）
+    public Image fadePanel;
+    public float fadeSpeed = 2f;
+
 
     private List<string[]> scenarioLines = new List<string[]>();
     private int currentLine = 0;
@@ -93,6 +97,15 @@ public class NovelGameManager : MonoBehaviour
             string slot = command.Replace("hide ", "").Trim();
             HideCharacter(slot);
         }
+        else if (command == "fadeout")
+        {
+            StartCoroutine(FadeOut());
+        }
+        else if (command == "fadein")
+        {
+            StartCoroutine(FadeIn());
+        }
+
     }
 
     void NextLine()
@@ -103,21 +116,21 @@ public class NovelGameManager : MonoBehaviour
 
     // ===== 背景変更 =====
     void ChangeBackground(string spriteName)
-{
-    Sprite bg = Resources.Load<Sprite>("Backgrounds/" + spriteName);
-
-    Debug.Log("読み込みに行っているパス: Backgrounds/" + spriteName);
-    Debug.Log("結果: " + (bg == null ? "null（失敗）" : "成功"));
-
-    if (bg == null)
     {
-        Debug.LogError("背景が見つかりません: " + spriteName);
-        return;
-    }
+        Sprite bg = Resources.Load<Sprite>("Backgrounds/" + spriteName);
 
-    bgImage.sprite = bg;
-    bgImage.color = Color.white;
-}
+        Debug.Log("読み込みに行っているパス: Backgrounds/" + spriteName);
+        Debug.Log("結果: " + (bg == null ? "null（失敗）" : "成功"));
+
+        if (bg == null)
+        {
+            Debug.LogError("背景が見つかりません: " + spriteName);
+            return;
+        }
+
+        bgImage.sprite = bg;
+        bgImage.color = Color.white;
+    }
 
 
     // ===== 立ち絵表示 =====
@@ -167,4 +180,31 @@ public class NovelGameManager : MonoBehaviour
             target.color = Color.clear;
         }
     }
+
+    IEnumerator FadeOut()
+    {
+        float alpha = 0f;
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime * fadeSpeed;
+            fadePanel.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeIn()
+    {
+        float alpha = 1f;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime * fadeSpeed;
+            fadePanel.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+    }
 }
+
+
+
