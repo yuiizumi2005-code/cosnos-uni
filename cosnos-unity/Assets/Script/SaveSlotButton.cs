@@ -16,24 +16,27 @@ public class SaveSlotButton : MonoBehaviour
 
     public void SaveThisSlot()
     {
+        Debug.Log("SaveThisSlot呼ばれた");
         saveManager.SaveGame(slotNumber, gameManager.GetCurrentLine());
         UpdateSlotInfo();
     }
 
     void UpdateSlotInfo()
     {
-        string path = Application.persistentDataPath + "/save" + slotNumber + ".json";
+        string path = Application.persistentDataPath + "/save_slot_" + slotNumber + ".json";
 
-        Debug.Log(path);
+        Debug.Log("確認パス: " + path);
 
         if (File.Exists(path))
         {
+            Debug.Log("ファイル発見");
+
             string json = File.ReadAllText(path);
             NovelSaveData data = JsonUtility.FromJson<NovelSaveData>(json);
 
-            Debug.Log("データ読み込み成功");
-
-            infoText.text = data.playerName;
+            infoText.text =
+                data.saveTime + "\n" +
+                "第" + data.storyIndex + "行";
         }
         else
         {

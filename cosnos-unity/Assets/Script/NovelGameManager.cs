@@ -18,10 +18,13 @@ public class NovelGameManager : MonoBehaviour
     private List<string[]> scenarioLines = new List<string[]>();
     public NovelSaveManager saveManager;
     public int currentLine = 0;
+    public bool isMenuOpen = false;
+    public bool isFading = false;
 
 
     void Start()
     {
+        Debug.Log("NovelGameManager Start 呼ばれた");
         // 立ち絵を初期化
         foreach (Image slot in characterSlots)
         {
@@ -33,8 +36,12 @@ public class NovelGameManager : MonoBehaviour
         DisplayLine();
     }
 
+
     void Update()
     {
+        if (isMenuOpen) return;
+        if (isFading) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             NextLine();
@@ -99,15 +106,18 @@ public class NovelGameManager : MonoBehaviour
             string slot = command.Replace("hide ", "").Trim();
             HideCharacter(slot);
         }
+        // フェードアウト（終わるまで待つ）
         else if (command == "fadeout")
         {
-            StartCoroutine(FadeOut());
+            StartCoroutine(FadeOutAndNext());
+            return;
         }
+        // フェードイン（終わるまで待つ）
         else if (command == "fadein")
         {
-            StartCoroutine(FadeIn());
+            StartCoroutine(FadeInAndNext());
+            return;
         }
-
     }
 
     void NextLine()
@@ -183,28 +193,40 @@ public class NovelGameManager : MonoBehaviour
         }
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOutAndNext()
     {
-        float alpha = 0f;
+        isFading = true;
 
+        float alpha = 0f;
         while (alpha < 1f)
         {
             alpha += Time.deltaTime * fadeSpeed;
             fadePanel.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+
+        isFading = false;
+
+        currentLine++;
+        DisplayLine();
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeInAndNext()
     {
-        float alpha = 1f;
+        isFading = true;
 
+        float alpha = 1f;
         while (alpha > 0f)
         {
             alpha -= Time.deltaTime * fadeSpeed;
             fadePanel.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+
+        isFading = false;
+
+        currentLine++;
+        DisplayLine();
     }
     public void SaveGame(int slotNumber)
     {

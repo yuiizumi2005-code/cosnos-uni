@@ -7,13 +7,18 @@ public class MenuManager : MonoBehaviour
     public GameObject logPanel;
     public GameObject settingPanel;
     public GameObject exitPanel;
-
+    public GameObject menuPanel;
+    public NovelGameManager gameManager;
     public TabButtonEffect saveTab;
     public TabButtonEffect itemTab;
     public TabButtonEffect logTab;
     public TabButtonEffect settingTab;
     public TabButtonEffect exitTab;
-
+    
+    void Start()
+    {
+        menuPanel.SetActive(false);
+    }
     void HideAll()
     {
         savePanel.SetActive(false);
@@ -62,5 +67,16 @@ public class MenuManager : MonoBehaviour
         HideAll();
         exitPanel.SetActive(true);
         exitTab.SelectTab();
+    }
+    public void OpenMenu()
+    {
+        menuPanel.SetActive(true);
+        gameManager.isMenuOpen = true;
+    }
+
+    public void CloseMenu()
+    {
+        menuPanel.SetActive(false);
+        gameManager.isMenuOpen = false;
     }
 }
