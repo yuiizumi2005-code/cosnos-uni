@@ -16,7 +16,9 @@ public class NovelGameManager : MonoBehaviour
 
 
     private List<string[]> scenarioLines = new List<string[]>();
-    private int currentLine = 0;
+    public NovelSaveManager saveManager;
+    public int currentLine = 0;
+
 
     void Start()
     {
@@ -203,6 +205,19 @@ public class NovelGameManager : MonoBehaviour
             fadePanel.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+    }
+    public void SaveGame(int slotNumber)
+    {
+        saveManager.SaveGame(slotNumber, currentLine);
+    }
+    public void LoadGame(int slotNumber)
+    {
+        currentLine = saveManager.LoadGame(slotNumber);
+        DisplayLine();
+    }
+    public int GetCurrentLine()
+    {
+        return currentLine;
     }
 }
 

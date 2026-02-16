@@ -3,7 +3,7 @@ using UnityEngine;
 public class TabButtonEffect : MonoBehaviour
 {
     private Vector2 originalPos;
-    public float moveAmount = 60f; // 右に動く量
+    public float moveAmount = 250f; // 右に動く量
 
     void Start()
     {
