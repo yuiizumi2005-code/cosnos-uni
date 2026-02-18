@@ -118,6 +118,12 @@ public class NovelGameManager : MonoBehaviour
             StartCoroutine(FadeInAndNext());
             return;
         }
+        // BGM変更
+        else if (command.StartsWith("bgm "))
+        {
+            string bgmName = command.Replace("bgm ", "").Trim();
+            BGMManager.instance.PlayBGM(bgmName);
+        }
     }
 
     void NextLine()

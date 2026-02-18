@@ -1,4 +1,5 @@
 ,気づけば教室は放課後だった。,bg houkago_kyousitu
+,,bgm school_theme
 ,机と椅子は静かに列をなし、外ではヒグラシがカナカナと、涼やかでどこか物悲しい声を繰り返していた。,show character-left-2:01_ken/character_01_ken_通常
 ツバキ,あっ、ここにいた。校門で待ってるように言ったでしょ。,show character-right-1:02_tsubaki/character_02_tsubaki_通常
 ,高等部の姉が教室の前に立っていた。,
@@ -9,6 +10,7 @@
 ,今日の夜ご飯はなんだろうね、と微笑みながら少し強めに僕の手を引く。,
 ケン,うん、帰ろう。,show character-left-2:01_ken/character_01_ken_笑顔
 ,,fadeout
+,,bgm town
 ,,bg houkago_miti
 ,,fadein
 ケン,今日、山田が教室に入って来た木村先生に黒板消しぶつけて、それに激怒した先生が職員室に帰っちゃって。おまけにゴリラが巣に帰ったなんて言い出したせいで、クラス丸ごと叱られて大変だったんだ。,show character-left-2:01_ken/character_01_ken_困り
