@@ -77,6 +77,7 @@ public class MenuManager : MonoBehaviour
     public void CloseMenu()
     {
         menuPanel.SetActive(false);
-        gameManager.isMenuOpen = false;
+
+        Debug.Log("menuPanel active: " + menuPanel.activeSelf);
     }
 }

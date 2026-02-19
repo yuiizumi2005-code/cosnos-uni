@@ -39,8 +39,15 @@ public class NovelGameManager : MonoBehaviour
 
     void Update()
     {
-        if (isMenuOpen) return;
+        // フェード中は進まない
         if (isFading) return;
+
+        // メニューがアクティブなら進まない
+        if (GameObject.Find("MenuPanel") != null &&
+            GameObject.Find("MenuPanel").activeSelf)
+        {
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
