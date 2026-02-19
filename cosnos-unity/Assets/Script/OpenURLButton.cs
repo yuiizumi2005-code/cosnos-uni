@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class OpenURLButton : MonoBehaviour
 {
-    public void OpenLink()
+    public string url = "https://x.com/chiyu449377";
+
+    public void Open()
     {
-        Application.OpenURL("https://x.com/chiayu449377");
+        Application.OpenURL(url);
     }
 }
