@@ -76,6 +76,15 @@ public class NovelGameManager : MonoBehaviour
 
     void DisplayLine()
     {
+         if (currentLine >= scenarioLines.Count)
+        {
+            ChapterEndManager endManager = FindObjectOfType<ChapterEndManager>();
+            if (endManager != null)
+            {
+                endManager.GoToMessageScene();
+            }
+            return;
+        }
         if (currentLine >= scenarioLines.Count) return;
 
         string[] parts = scenarioLines[currentLine];
@@ -255,6 +264,7 @@ public class NovelGameManager : MonoBehaviour
     {
         return currentLine;
     }
+
 }
 
 
