@@ -5,15 +5,14 @@ using System.IO;
 
 public class NovelSaveManager : MonoBehaviour
 {
-    public void SaveGame(int slotNumber, int index)
+    public void SaveGame(int slotNumber, int index, string dialogue)
     {
         string savePath = Application.persistentDataPath + "/save_slot_" + slotNumber + ".json";
 
         NovelSaveData data = new NovelSaveData();
         data.storyIndex = index;
-
-        // ★ 現在日時を保存
         data.saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm");
+        data.dialogueText = dialogue;   // ← 追加
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);

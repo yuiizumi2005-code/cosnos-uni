@@ -243,7 +243,8 @@ public class NovelGameManager : MonoBehaviour
     }
     public void SaveGame(int slotNumber)
     {
-        saveManager.SaveGame(slotNumber, currentLine);
+        string currentDialogue = dialogueText.text;   // 今表示中のセリフ
+        saveManager.SaveGame(slotNumber, currentLine, currentDialogue);
     }
     public void LoadGame(int slotNumber)
     {
