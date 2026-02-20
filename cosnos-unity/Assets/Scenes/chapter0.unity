@@ -6807,7 +6807,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8841,7 +8841,7 @@ PrefabInstance:
     - target: {fileID: 2871446708921757009, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8388396607300632064, guid: 032efdf639576d742a693b7c81f9751c, type: 3}
+      objectReference: {fileID: -8388396607300632064, guid: 6631669e0f83ead4889b27b81b069a43, type: 3}
     - target: {fileID: 3600151297230664032, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_IsActive
       value: 0
