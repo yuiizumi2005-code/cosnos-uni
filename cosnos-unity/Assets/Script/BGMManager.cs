@@ -9,27 +9,29 @@ public class BGMManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;   // ★ これを追加！！
-
-        audioSource = GetComponent<AudioSource>();
-
-        if (audioSource == null)
+        if (instance == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
-        audioSource.loop = true;
-        audioSource.spatialBlend = 0f; // 2D
+        // AudioSourceが未設定なら自動取得
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
-    public void PlayBGM(string bgmName)
+    private Coroutine fadeCoroutine;
+
+    public void PlayBGM(string bgmName, float volume)
     {
-        Debug.Log("BGM再生指示: " + bgmName);
-
-        string path = "BGM/" + bgmName;
-        Debug.Log("読み込みパス: " + path);
-
-        AudioClip clip = Resources.Load<AudioClip>(path);
+        AudioClip clip = Resources.Load<AudioClip>("BGM/" + bgmName);
 
         if (clip == null)
         {
@@ -37,32 +39,41 @@ public class BGMManager : MonoBehaviour
             return;
         }
 
-        audioSource.clip = clip;
-        audioSource.Play();
+        // ★ 前のフェードを止める
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
 
-        Debug.Log("再生しました");
+        fadeCoroutine = StartCoroutine(FadeBGM(clip, volume));
     }
 
-    IEnumerator FadeBGM(AudioClip newClip)
+
+
+
+    IEnumerator FadeBGM(AudioClip newClip, float targetVolume)
     {
         // フェードアウト
-        while (audioSource.volume > 0)
+        while (audioSource.volume > 0f)
         {
             audioSource.volume -= Time.deltaTime / fadeTime;
             yield return null;
         }
 
+        audioSource.Stop();
+
         audioSource.clip = newClip;
+        audioSource.volume = 0f;
         audioSource.Play();
 
         // フェードイン
-        while (audioSource.volume < 1)
+        while (audioSource.volume < targetVolume)
         {
             audioSource.volume += Time.deltaTime / fadeTime;
             yield return null;
         }
 
-        audioSource.volume = 1;
+        audioSource.volume = targetVolume;
     }
     
 }

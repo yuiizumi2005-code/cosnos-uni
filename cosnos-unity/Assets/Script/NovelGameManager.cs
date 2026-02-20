@@ -24,6 +24,8 @@ public class NovelGameManager : MonoBehaviour
 
     void Start()
     {
+        BGMManager.instance.PlayBGM("school_theme", 0.5f);
+
         Debug.Log("NovelGameManager Start 呼ばれた");
         // 立ち絵を初期化
         foreach (Image slot in characterSlots)
@@ -85,7 +87,6 @@ public class NovelGameManager : MonoBehaviour
             }
             return;
         }
-        if (currentLine >= scenarioLines.Count) return;
 
         string[] parts = scenarioLines[currentLine];
 
@@ -137,9 +138,18 @@ public class NovelGameManager : MonoBehaviour
         // BGM変更
         else if (command.StartsWith("bgm "))
         {
-            string bgmName = command.Replace("bgm ", "").Trim();
-            BGMManager.instance.PlayBGM(bgmName);
+            string[] bgmParts = command.Replace("bgm ", "").Split(' ');
+            string bgmName = bgmParts[0];
+            float volume = 1f;
+
+            if (bgmParts.Length >= 2)
+            {
+                float.TryParse(bgmParts[1], out volume);
+            }
+
+            BGMManager.instance.PlayBGM(bgmName, volume);
         }
+
     }
 
     void NextLine()
