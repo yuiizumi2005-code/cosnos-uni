@@ -20,6 +20,8 @@ public class NovelGameManager : MonoBehaviour
     public int currentLine = 0;
     public bool isMenuOpen = false;
     public bool isFading = false;
+     public static NovelGameManager instance;
+    public bool isPlayingMovie = false;
 
 
     void Start()
@@ -43,6 +45,7 @@ public class NovelGameManager : MonoBehaviour
     {
         // フェード中は進まない
         if (isFading) return;
+        if (isPlayingMovie) return;
 
         // メニューがアクティブなら進まない
         if (GameObject.Find("MenuPanel") != null &&
@@ -55,6 +58,8 @@ public class NovelGameManager : MonoBehaviour
         {
             NextLine();
         }
+        if (isPlayingMovie) return;
+
     }
 
     void LoadScenario(string fileName)
@@ -149,10 +154,16 @@ public class NovelGameManager : MonoBehaviour
 
             BGMManager.instance.PlayBGM(bgmName, volume);
         }
+        else if (command.StartsWith("movie "))
+        {
+            string movieName = command.Replace("movie ", "").Trim();
+            VideoManager.instance.PlayVideo(movieName);
+        }
+
 
     }
 
-    void NextLine()
+    public void NextLine()
     {
         currentLine++;
         DisplayLine();
@@ -273,6 +284,10 @@ public class NovelGameManager : MonoBehaviour
     public int GetCurrentLine()
     {
         return currentLine;
+    }
+    void Awake()
+    {
+        instance = this;
     }
 
 }
