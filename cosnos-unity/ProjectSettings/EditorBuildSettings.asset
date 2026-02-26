@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/chapter1-Solve.unity
     guid: 3cdff733f6290794ea357957fee37299
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Message.unity
     guid: 00ceb9cd5bc154872a5432f5f3e500d3
   m_configObjects:

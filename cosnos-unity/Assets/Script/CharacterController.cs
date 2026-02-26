@@ -13,13 +13,16 @@ public class CharacterManager : MonoBehaviour
 
     public List<CharacterSlot> characterSlots; // Unityで登録
     private Dictionary<string, Image> slotDict;
-
+    private Dictionary<string, string> currentCharacterState;
     void Awake()
     {
         slotDict = new Dictionary<string, Image>();
+        currentCharacterState = new Dictionary<string, string>();
+
         foreach (var slot in characterSlots)
         {
             slotDict[slot.position] = slot.image;
+            currentCharacterState[slot.position] = null; // 初期化
         }
     }
 
@@ -28,11 +31,10 @@ public class CharacterManager : MonoBehaviour
         if (slotDict.ContainsKey(position))
         {
             slotDict[position].sprite = sprite;
-            slotDict[position].color = new Color(1, 1, 1, 1); // 表示
-        }
-        else
-        {
-            Debug.LogWarning($"位置 {position} が見つかりません。");
+            slotDict[position].color = new Color(1, 1, 1, 1);
+
+            // 🔥 追加
+            currentCharacterState[position] = sprite.name;
         }
     }
 
@@ -41,7 +43,29 @@ public class CharacterManager : MonoBehaviour
         if (slotDict.ContainsKey(position))
         {
             slotDict[position].sprite = null;
-            slotDict[position].color = new Color(1, 1, 1, 0); // 非表示
+            slotDict[position].color = new Color(1, 1, 1, 0);
+
+            // 🔥 追加
+            currentCharacterState[position] = null;
+        }
+    }
+    public Dictionary<string, string> GetCharacterState()
+    {
+        return new Dictionary<string, string>(currentCharacterState);
+    }
+    public void RestoreCharacterState(Dictionary<string, string> savedState)
+    {
+        foreach (var pair in savedState)
+        {
+            if (string.IsNullOrEmpty(pair.Value))
+            {
+                HideCharacter(pair.Key);
+            }
+            else
+            {
+                Sprite sprite = Resources.Load<Sprite>("Characters/" + pair.Value);
+                ShowCharacter(pair.Key, sprite);
+            }
         }
     }
 }

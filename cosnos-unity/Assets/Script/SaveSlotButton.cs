@@ -21,7 +21,8 @@ public class SaveSlotButton : MonoBehaviour
         saveManager.SaveGame(
             slotNumber,
             gameManager.GetCurrentLine(),
-            currentDialogue
+            currentDialogue,
+            gameManager.GetCurrentBackgroundName()
         );
 
         UpdateSlotInfo();

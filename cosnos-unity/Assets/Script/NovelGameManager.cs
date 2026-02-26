@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.IO;
 
+
 public class NovelGameManager : MonoBehaviour
 {
     public TMP_Text nameText;         // 名前表示
@@ -23,20 +24,40 @@ public class NovelGameManager : MonoBehaviour
      public static NovelGameManager instance;
     public bool isPlayingMovie = false;
 
+    public string currentBackgroundName;
+    public string currentLeftCharacter;
+    public string currentRightCharacter;
+    public string currentBGMName;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // シーン切り替えでも残す場合
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         BGMManager.instance.PlayBGM("school_theme", 0.5f);
 
         Debug.Log("NovelGameManager Start 呼ばれた");
-        // 立ち絵を初期化
+
+        // 立ち絵初期化
         foreach (Image slot in characterSlots)
         {
             slot.sprite = null;
             slot.color = Color.clear;
         }
 
+        // シナリオ読み込み
         LoadScenario("scenario"); // Resources/scenario.csv
+
+        // **ここでは自動ロードはせず、ボタン経由でロードする**
         DisplayLine();
     }
 
@@ -80,7 +101,10 @@ public class NovelGameManager : MonoBehaviour
             scenarioLines.Add(line.Split(','));
         }
     }
-
+    public int GetCurrentLine()
+    {
+        return currentLine;
+    }
     void DisplayLine()
     {
          if (currentLine >= scenarioLines.Count)
@@ -107,7 +131,7 @@ public class NovelGameManager : MonoBehaviour
 
         // 背景変更
         if (command.StartsWith("bg "))
-        {
+        {   
             string bgName = command.Replace("bg ", "").Trim();
             ChangeBackground(bgName);
         }
@@ -124,7 +148,7 @@ public class NovelGameManager : MonoBehaviour
         }
         // 立ち絵非表示
         else if (command.StartsWith("hide "))
-        {
+        {   
             string slot = command.Replace("hide ", "").Trim();
             HideCharacter(slot);
         }
@@ -162,7 +186,6 @@ public class NovelGameManager : MonoBehaviour
 
 
     }
-
     public void NextLine()
     {
         currentLine++;
@@ -170,12 +193,11 @@ public class NovelGameManager : MonoBehaviour
     }
 
     // ===== 背景変更 =====
-    void ChangeBackground(string spriteName)
+    public void ChangeBackground(string spriteName)
     {
-        Sprite bg = Resources.Load<Sprite>("Backgrounds/" + spriteName);
+        currentBackgroundName = spriteName;   // ★ここで必ず更新
 
-        Debug.Log("読み込みに行っているパス: Backgrounds/" + spriteName);
-        Debug.Log("結果: " + (bg == null ? "null（失敗）" : "成功"));
+        Sprite bg = Resources.Load<Sprite>("Backgrounds/" + spriteName);
 
         if (bg == null)
         {
@@ -273,21 +295,36 @@ public class NovelGameManager : MonoBehaviour
     }
     public void SaveGame(int slotNumber)
     {
-        string currentDialogue = dialogueText.text;   // 今表示中のセリフ
-        saveManager.SaveGame(slotNumber, currentLine, currentDialogue);
+        string currentDialogue = dialogueText.text;
+
+        saveManager.SaveGame(
+            slotNumber,
+            currentLine,
+            currentDialogue,
+            currentBackgroundName   // ★追加
+        );
     }
     public void LoadGame(int slotNumber)
     {
+        if (scenarioLines == null || scenarioLines.Count == 0)
+        {
+            Debug.LogWarning("シナリオが読み込まれていません。ロードをスキップ");
+            currentLine = 0;
+            return;
+        }
+
         currentLine = saveManager.LoadGame(slotNumber);
+
+        if (currentLine >= scenarioLines.Count)
+            currentLine = scenarioLines.Count - 1;
+        if (currentLine < 0)
+            currentLine = 0;
+
         DisplayLine();
     }
-    public int GetCurrentLine()
+    public string GetCurrentBackgroundName()
     {
-        return currentLine;
-    }
-    void Awake()
-    {
-        instance = this;
+        return currentBackgroundName;
     }
 
 }

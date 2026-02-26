@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     public TabButtonEffect logTab;
     public TabButtonEffect settingTab;
     public TabButtonEffect exitTab;
+    public GameObject loadPanel;
+    public TabButtonEffect loadTab;
     
     void Start()
     {
@@ -22,12 +24,14 @@ public class MenuManager : MonoBehaviour
     void HideAll()
     {
         savePanel.SetActive(false);
+        loadPanel.SetActive(false);
         itemPanel.SetActive(false);
         logPanel.SetActive(false);
         settingPanel.SetActive(false);
         exitPanel.SetActive(false);
 
         saveTab.ResetTab();
+        loadTab.ResetTab();
         itemTab.ResetTab();
         logTab.ResetTab();
         settingTab.ResetTab();
@@ -41,6 +45,12 @@ public class MenuManager : MonoBehaviour
         saveTab.SelectTab();
     }
 
+    public void ShowLoad()
+    {
+        HideAll();
+        loadPanel.SetActive(true);
+        loadTab.SelectTab();
+    }
     public void ShowItem()
     {
         HideAll();

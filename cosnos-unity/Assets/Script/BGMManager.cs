@@ -6,6 +6,7 @@ public class BGMManager : MonoBehaviour
     public static BGMManager instance;
     public AudioSource audioSource;
     public float fadeTime = 1.5f;
+    public string currentBGMName;
 
     void Awake()
     {
@@ -30,7 +31,7 @@ public class BGMManager : MonoBehaviour
     private Coroutine fadeCoroutine;
 
     public void PlayBGM(string bgmName, float volume)
-    {
+    {   currentBGMName = bgmName;
         AudioClip clip = Resources.Load<AudioClip>("BGM/" + bgmName);
 
         if (clip == null)
