@@ -19,9 +19,8 @@ public class LoadSlotButton : MonoBehaviour
 
         if (data != null)
         {
-            gameManager.LoadGame(slotNumber);
+            NovelGameManager.instance.LoadGame(slotNumber);
 
-            // メニューを閉じる
             FindObjectOfType<MenuManager>().CloseMenu();
         }
     }

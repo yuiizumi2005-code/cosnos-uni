@@ -7,6 +7,20 @@ public class NovelSaveManager : MonoBehaviour
 {
     public CharacterManager characterManager;
     public string backgroundName;
+    public static NovelSaveManager instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void SaveGame(int slotNumber, int index, string dialogue, string bgName)
     {
         string savePath = Application.persistentDataPath + "/save_slot_" + slotNumber + ".json";

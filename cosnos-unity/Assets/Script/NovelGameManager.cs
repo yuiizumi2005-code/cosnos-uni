@@ -306,14 +306,19 @@ public class NovelGameManager : MonoBehaviour
     }
     public void LoadGame(int slotNumber)
     {
-        if (scenarioLines == null || scenarioLines.Count == 0)
+        if (NovelSaveManager.instance == null)
         {
-            Debug.LogWarning("シナリオが読み込まれていません。ロードをスキップ");
-            currentLine = 0;
+            Debug.LogError("SaveManagerが存在しません");
             return;
         }
 
-        currentLine = saveManager.LoadGame(slotNumber);
+        if (scenarioLines == null || scenarioLines.Count == 0)
+        {
+            Debug.LogWarning("シナリオが読み込まれていません");
+            return;
+        }
+
+        currentLine = NovelSaveManager.instance.LoadGame(slotNumber);
 
         if (currentLine >= scenarioLines.Count)
             currentLine = scenarioLines.Count - 1;
