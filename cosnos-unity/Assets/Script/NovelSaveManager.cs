@@ -8,6 +8,7 @@ public class NovelSaveManager : MonoBehaviour
     public CharacterManager characterManager;
     public string backgroundName;
     public static NovelSaveManager instance;
+    public string bgmName;
 
     void Awake()
     {
@@ -28,11 +29,14 @@ public class NovelSaveManager : MonoBehaviour
         NovelSaveData data = new NovelSaveData();
         data.storyIndex = index;
         data.saveTime = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm");
-        data.dialogueText = dialogue;   // ← 追加
+        data.dialogueText = dialogue;
         data.backgroundName = bgName;
-        // 🔥 キャラ状態保存
-        var state = characterManager.GetCharacterState();
 
+        // ✅ BGMはGameManagerから取得
+        data.bgmName = NovelGameManager.instance.currentBGMName;
+
+        // キャラ状態保存
+        var state = characterManager.GetCharacterState();
         data.characterStates = new List<CharacterSaveData>();
 
         foreach (var pair in state)
@@ -91,7 +95,10 @@ public class NovelSaveManager : MonoBehaviour
             else
                 Debug.LogError("NovelGameManager.instance が null です！");
         }
-
+        if (!string.IsNullOrEmpty(data.bgmName))
+        {
+            BGMManager.instance.PlayBGM(data.bgmName, 1f);
+        }
         // キャラ復元
         if (characterManager != null && data.characterStates != null)
         {

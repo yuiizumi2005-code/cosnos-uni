@@ -18,6 +18,7 @@ public class NovelGameManager : MonoBehaviour
 
     private List<string[]> scenarioLines = new List<string[]>();
     public NovelSaveManager saveManager;
+    public CharacterManager characterManager;
     public int currentLine = 0;
     public bool isMenuOpen = false;
     public bool isFading = false;
@@ -28,6 +29,7 @@ public class NovelGameManager : MonoBehaviour
     public string currentLeftCharacter;
     public string currentRightCharacter;
     public string currentBGMName;
+    
 
     void Awake()
     {
@@ -64,11 +66,11 @@ public class NovelGameManager : MonoBehaviour
 
     void Update()
     {
-        // フェード中は進まない
+        if (isLoading) return;  // ★追加
+
         if (isFading) return;
         if (isPlayingMovie) return;
 
-        // メニューがアクティブなら進まない
         if (GameObject.Find("MenuPanel") != null &&
             GameObject.Find("MenuPanel").activeSelf)
         {
@@ -79,8 +81,6 @@ public class NovelGameManager : MonoBehaviour
         {
             NextLine();
         }
-        if (isPlayingMovie) return;
-
     }
 
     void LoadScenario(string fileName)
@@ -106,7 +106,8 @@ public class NovelGameManager : MonoBehaviour
         return currentLine;
     }
     void DisplayLine()
-    {
+    {   Debug.Log("DisplayLine呼び出し currentLine = " + currentLine);
+
          if (currentLine >= scenarioLines.Count)
         {
             ChapterEndManager endManager = FindObjectOfType<ChapterEndManager>();
@@ -177,11 +178,9 @@ public class NovelGameManager : MonoBehaviour
             }
 
             BGMManager.instance.PlayBGM(bgmName, volume);
-        }
-        else if (command.StartsWith("movie "))
-        {
-            string movieName = command.Replace("movie ", "").Trim();
-            VideoManager.instance.PlayVideo(movieName);
+
+            // 🔥 追加
+            currentBGMName = bgmName;
         }
 
 
@@ -225,10 +224,18 @@ public class NovelGameManager : MonoBehaviour
 
         switch (slotName)
         {
-            case "character-left-1": target = characterSlots[0]; break;
-            case "character-left-2": target = characterSlots[1]; break;
-            case "character-right-1": target = characterSlots[2]; break;
-            case "character-right-2": target = characterSlots[3]; break;
+            case "character-left-1":
+                target = characterSlots[0];
+                break;
+            case "character-left-2":
+                target = characterSlots[1];
+                break;
+            case "character-right-1":
+                target = characterSlots[2];
+                break;
+            case "character-right-2":
+                target = characterSlots[3];
+                break;
         }
 
         if (target != null)
@@ -236,6 +243,8 @@ public class NovelGameManager : MonoBehaviour
             target.sprite = newSprite;
             target.color = Color.white;
         }
+
+        
     }
 
     // ===== 立ち絵非表示 =====
@@ -297,13 +306,16 @@ public class NovelGameManager : MonoBehaviour
     {
         string currentDialogue = dialogueText.text;
 
+        Debug.Log("SAVE currentLine = " + currentLine);
+
         saveManager.SaveGame(
             slotNumber,
             currentLine,
             currentDialogue,
-            currentBackgroundName   // ★追加
+            currentBackgroundName
         );
     }
+    bool isLoading = false;
     public void LoadGame(int slotNumber)
     {
         if (NovelSaveManager.instance == null)
@@ -312,25 +324,35 @@ public class NovelGameManager : MonoBehaviour
             return;
         }
 
-        if (scenarioLines == null || scenarioLines.Count == 0)
-        {
-            Debug.LogWarning("シナリオが読み込まれていません");
-            return;
-        }
+        isLoading = true;
 
-        currentLine = NovelSaveManager.instance.LoadGame(slotNumber);
+        int loadedLine = NovelSaveManager.instance.LoadGame(slotNumber);
+        Debug.Log("ロードされた値 = " + loadedLine);
+
+        currentLine = loadedLine;
 
         if (currentLine >= scenarioLines.Count)
             currentLine = scenarioLines.Count - 1;
+
         if (currentLine < 0)
             currentLine = 0;
 
-        DisplayLine();
+        // ❌ NextLine(); ←削除
+
+        DisplayLine();   // ←これに変更
+
+        StartCoroutine(EnableInputNextFrame());
     }
     public string GetCurrentBackgroundName()
     {
         return currentBackgroundName;
     }
+    IEnumerator EnableInputNextFrame()
+    {
+        yield return null;   // 1フレーム待つ
+        isLoading = false;
+    }
+
 
 }
 

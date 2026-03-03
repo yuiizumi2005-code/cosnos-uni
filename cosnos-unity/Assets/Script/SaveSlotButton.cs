@@ -5,7 +5,6 @@ public class SaveSlotButton : MonoBehaviour
 {
     public int slotNumber;
     public NovelSaveManager saveManager;
-    public NovelGameManager gameManager;
     public TextMeshProUGUI infoText;   // ← スロット表示用
 
     void Start()
@@ -16,13 +15,13 @@ public class SaveSlotButton : MonoBehaviour
 
     public void SaveThisSlot()
     {
-        string currentDialogue = gameManager.dialogueText.text;
+        NovelGameManager gm = NovelGameManager.instance;
 
         saveManager.SaveGame(
             slotNumber,
-            gameManager.GetCurrentLine(),
-            currentDialogue,
-            gameManager.GetCurrentBackgroundName()
+            gm.GetCurrentLine(),
+            gm.dialogueText.text,
+            gm.GetCurrentBackgroundName()
         );
 
         UpdateSlotInfo();

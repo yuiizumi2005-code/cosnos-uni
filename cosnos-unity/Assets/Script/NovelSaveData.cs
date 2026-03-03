@@ -12,6 +12,7 @@ public class NovelSaveData
     public string rightCharacter;
     public string currentBGM;
     public string backgroundName;
+    public string bgmName;
     public List<CharacterSaveData> characterStates;
     
 }
