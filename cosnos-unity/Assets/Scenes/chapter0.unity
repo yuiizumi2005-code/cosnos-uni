@@ -981,6 +981,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterManager: {fileID: 1251429551}
+  backgroundName: 
+  bgmName: 
 --- !u!4 &260256874
 Transform:
   m_ObjectHideFlags: 0
@@ -1920,7 +1922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 1
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 1360574105}
 --- !u!4 &384100204
 Transform:
@@ -1951,7 +1952,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 3
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 1931034631}
 --- !u!114 &384100206
 MonoBehaviour:
@@ -1967,7 +1967,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 2
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 293274799}
 --- !u!1 &386906167
 GameObject:
@@ -2255,7 +2254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 1
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 1360574105}
 --- !u!1 &430858658
 GameObject:
@@ -4045,6 +4043,7 @@ MonoBehaviour:
   fadePanel: {fileID: 325460945}
   fadeSpeed: 2
   saveManager: {fileID: 260256873}
+  characterManager: {fileID: 0}
   currentLine: 0
   isMenuOpen: 0
   isFading: 0
@@ -5920,7 +5919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 3
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 1931034631}
 --- !u!1 &1112340767
 GameObject:
@@ -9080,7 +9078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 2
   saveManager: {fileID: 260256873}
-  gameManager: {fileID: 703236684}
   infoText: {fileID: 293274799}
 --- !u!1 &1810494087
 GameObject:
@@ -10382,7 +10379,7 @@ PrefabInstance:
     - target: {fileID: 4212775701275285504, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ed184fa50955cc34e89024d1d302d230, type: 3}
+      objectReference: {fileID: 21300000, guid: f48e08b1b2fa34040b1e0df5c045f000, type: 3}
     - target: {fileID: 4286965541546667981, guid: e75e8c892d1125046bdeb318b249dd2f, type: 3}
       propertyPath: m_Sprite
       value: 
