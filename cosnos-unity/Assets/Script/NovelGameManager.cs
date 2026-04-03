@@ -29,6 +29,7 @@ public class NovelGameManager : MonoBehaviour
     public string currentLeftCharacter;
     public string currentRightCharacter;
     public string currentBGMName;
+    public List<string> dialogueLog = new List<string>();
     
 
     void Awake()
@@ -127,7 +128,8 @@ public class NovelGameManager : MonoBehaviour
         // 名前とセリフ表示
         nameText.text = name;
         dialogueText.text = text;
-
+        // ★ログに追加
+        dialogueLog.Add(name + "： " + text);
         // ===== コマンド処理 =====
 
         // 背景変更
